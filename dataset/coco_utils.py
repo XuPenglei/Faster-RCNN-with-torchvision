@@ -219,13 +219,14 @@ class CocoDetection(torchvision.datasets.CocoDetection):
         return img, target
 
 
-def get_coco(root, image_set, transforms, mode='instances'):
-    anno_file_template = "{}_{}2017.json"
+def get_coco(image_set, transforms):
     PATHS = {
-        "train": ("train2017", os.path.join("annotations", anno_file_template.format(mode, "train"))),
-        "val": ("val2017", os.path.join("annotations", anno_file_template.format(mode, "val"))),
-        # "train": ("val2017", os.path.join("annotations", anno_file_template.format(mode, "val")))
+        "train": (r"E:\ResearchDOC\term2\MSRCNN_polyrnn\test\test\austin\img",
+                  r'E:\ResearchDOC\term2\MSRCNN_polyrnn\test\test\austin\ann.json'),
+        "val": (r"E:\ResearchDOC\term2\MSRCNN_polyrnn\test\test\austin\img",
+                r'E:\ResearchDOC\term2\MSRCNN_polyrnn\test\test\austin\ann.json'),
     }
+
 
     t = [ConvertCocoPolysToMask()]
 
@@ -234,8 +235,8 @@ def get_coco(root, image_set, transforms, mode='instances'):
     transforms = T.Compose(t)
 
     img_folder, ann_file = PATHS[image_set]
-    img_folder = os.path.join(root, img_folder)
-    ann_file = os.path.join(root, ann_file)
+    # img_folder = os.path.join(root, img_folder)
+    # ann_file = os.path.join(root, ann_file)
 
     dataset = CocoDetection(img_folder, ann_file, transforms=transforms)
 
@@ -249,3 +250,5 @@ def get_coco(root, image_set, transforms, mode='instances'):
 
 def get_coco_kp(root, image_set, transforms):
     return get_coco(root, image_set, transforms, mode="person_keypoints")
+
+

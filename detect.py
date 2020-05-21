@@ -11,8 +11,8 @@ import random
 def get_args():
     parser = argparse.ArgumentParser(description='Pytorch Faster-rcnn Detection')
 
-    parser.add_argument('--model_path', type=str, default='./result/model_19.pth', help='model path')
-    parser.add_argument('--image_path', type=str, default='./test.jpg', help='image path')
+    parser.add_argument('--model_path', type=str, default=r'E:\ResearchDOC\term2\MSRCNN_polyrnn\Faster-RCNN-with-torchvision\result\model_999.pth', help='model path')
+    parser.add_argument('--image_path', type=str, default=r'E:\ResearchDOC\term2\MSRCNN_polyrnn\test\test\austin\img\austin_1_3.png', help='image path')
     parser.add_argument('--model', default='fasterrcnn_resnet50_fpn', help='model')
     parser.add_argument('--dataset', default='coco', help='model')
     parser.add_argument('--score', type=float, default=0.8, help='objectness score threshold')
@@ -31,7 +31,7 @@ def main():
     args = get_args()
     input = []
     if args.dataset == 'coco':
-        num_classes = 91
+        num_classes = 2
         names = coco_names.names
         
     # Model creating

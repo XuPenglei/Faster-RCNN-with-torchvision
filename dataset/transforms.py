@@ -48,3 +48,12 @@ class ToTensor(object):
     def __call__(self, image, target):
         image = F.to_tensor(image)
         return image, target
+
+class resize_IMG(object):
+    def __init__(self,ori_size,scale):
+        self.ori_size = ori_size
+        self.scale = scale
+    def __call__(self, image, target):
+        image = F.resize(image, (self.ori_size*self.scale,self.ori_size*self.scale))
+        return image,target
+
